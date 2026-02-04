@@ -1,0 +1,3 @@
+search --fs-uuid --set=efiroot EFI_UUID_HERE
+set theme=($efiroot)/EFI/grub/themes/thinkpad/theme.txt
+export theme

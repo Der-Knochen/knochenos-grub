@@ -1,0 +1,4 @@
+menuentry "Windows 11" {
+ search --fs-uuid --set=efiroot EFI_UUID_HERE
+ chainloader ($efiroot)/EFI/Microsoft/Boot/bootmgfw.efi
+}
