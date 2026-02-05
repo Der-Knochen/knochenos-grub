@@ -1,0 +1,45 @@
+# ============================================
+# Manjaro Linux – BTRFS (@) – Kernel 6.12
+# ============================================
+
+submenu "Manjaro Linux (BTRFS @, Kernel 6.12)" --class manjaro {
+
+    menuentry "Manjaro – Normal (NVIDIA, ZSTD)" --class manjaro {
+        insmod part_gpt
+        insmod btrfs
+        search --fs-uuid --set=root 2a0d8b33-ad86-493a-a349-a6cb2567d7fa
+
+        linux /@/boot/vmlinuz-6.12-x86_64 \
+            root=UUID=2a0d8b33-ad86-493a-a349-a6cb2567d7fa \
+            rootflags=subvol=@,compress=zstd,noatime,space_cache=v2,ssd \
+            rw quiet splash loglevel=3 nvidia-drm.modeset=1
+
+        initrd /@/boot/intel-ucode.img /@/boot/initramfs-6.12-x86_64.img
+    }
+
+    menuentry "Manjaro – Fallback (NoModeset)" --class recovery {
+        insmod part_gpt
+        insmod btrfs
+        search --fs-uuid --set=root 2a0d8b33-ad86-493a-a349-a6cb2567d7fa
+
+        linux /@/boot/vmlinuz-6.12-x86_64 \
+            root=UUID=2a0d8b33-ad86-493a-a349-a6cb2567d7fa \
+            rootflags=subvol=@ \
+            rw nomodeset systemd.unit=multi-user.target
+
+        initrd /@/boot/intel-ucode.img /@/boot/initramfs-6.12-x86_64.img
+    }
+
+    menuentry "Manjaro – Debug (Verbose)" --class debug {
+        insmod part_gpt
+        insmod btrfs
+        search --fs-uuid --set=root 2a0d8b33-ad86-493a-a349-a6cb2567d7fa
+
+        linux /@/boot/vmlinuz-6.12-x86_64 \
+            root=UUID=2a0d8b33-ad86-493a-a349-a6cb2567d7fa \
+            rootflags=subvol=@ \
+            rw debug ignore_loglevel loglevel=7 systemd.show_status=true
+
+        initrd /@/boot/intel-ucode.img /@/boot/initramfs-6.12-x86_64.img
+    }
+}

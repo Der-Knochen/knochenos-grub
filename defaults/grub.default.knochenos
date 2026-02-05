@@ -1,0 +1,29 @@
+# ==============================
+# KnochenOS – GRUB Defaults
+# ==============================
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_TIMEOUT_STYLE=menu
+
+# Wir definieren Grafik & Theme in grub.d/10_theme.knochenos
+# → hier KEIN GRUB_THEME setzen!
+GRUB_GFXMODE=1920x1080
+GRUB_GFXPAYLOAD_LINUX=keep
+
+# Kernel-Parameter (global)
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3"
+GRUB_CMDLINE_LINUX=""
+
+# WICHTIG: os-prober AUS (wir machen alles manuell & stabil)
+GRUB_DISABLE_OS_PROBER=true
+
+# UEFI
+GRUB_TERMINAL_OUTPUT="gfxterm"
+
+# Recovery-Einträge ausblenden (optional)
+GRUB_DISABLE_RECOVERY="true"
+
+# Farb-Fallback (nur falls Theme nicht lädt)
+GRUB_COLOR_NORMAL="light-gray/black"
+GRUB_COLOR_HIGHLIGHT="black/light-gray"

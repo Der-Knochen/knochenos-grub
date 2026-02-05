@@ -1,3 +1,10 @@
-search --fs-uuid --set=efiroot EFI_UUID_HERE
-set theme=($efiroot)/EFI/grub/themes/thinkpad/theme.txt
+insmod all_video
+insmod gfxterm
+terminal_output gfxterm
+
+search --fs-uuid --set=efiroot 3DF6-BEDC
+set theme=($efiroot)/EFI/GRUB/themes/thinkpad/theme.txt
 export theme
+
+set gfxmode=1920x1080
+set gfxpayload=keep

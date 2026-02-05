@@ -1,0 +1,42 @@
+# ============================================
+# KnochenOS – GRUB Tools & Utilities
+# ============================================
+
+### GRUB Command Line ###
+menuentry "GRUB Command Line" --class tools {
+    commandline
+}
+
+### Reboot ###
+menuentry "Reboot" --class reboot {
+    reboot
+}
+
+### Shutdown ###
+menuentry "Shutdown" --class shutdown {
+    halt
+}
+
+### Boot from USB (UEFI scan) ###
+menuentry "Boot from USB Device" --class usb {
+    echo "Scanning for UEFI USB devices..."
+    insmod usb
+    insmod usbms
+    insmod part_gpt
+    insmod part_msdos
+    insmod fat
+    insmod ntfs
+    insmod exfat
+
+    for drive in (hd1) (hd2) (hd3) (hd4); do
+        if [ -f ${drive}/efi/boot/bootx64.efi ]; then
+            echo "Found UEFI bootloader on ${drive}"
+            set root=${drive}
+            chainloader /efi/boot/bootx64.efi
+            boot
+        fi
+    done
+
+    echo "No bootable USB device found."
+    sleep 5
+}

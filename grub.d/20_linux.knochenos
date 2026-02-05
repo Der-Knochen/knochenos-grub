@@ -1,0 +1,35 @@
+### Debian GNU/Linux 12 (Host) ###
+menuentry "Debian GNU/Linux 12 (KnochenOS)" --class debian {
+    search --fs-uuid --set=root 74cff028-7695-4900-861d-3f5cae3e1f09
+    linux /boot/vmlinuz root=UUID=74cff028-7695-4900-861d-3f5cae3e1f09 ro quiet splash loglevel=3
+    initrd /boot/initrd.img
+}
+
+### Ubuntu / CSI Linux ###
+menuentry "Ubuntu 22.04 (CSI / Forensics)" --class csi {
+    search --fs-uuid --set=root eae9c8f1-1036-4018-8781-ef0a754d375b
+    linux /boot/vmlinuz-6.9.9-060909-generic root=UUID=eae9c8f1-1036-4018-8781-ef0a754d375b ro quiet nomodeset
+    initrd /boot/initrd.img-6.9.9-060909-generic
+}
+
+### Kodachi ###
+menuentry "Kodachi Linux (Privacy)" --class privacy {
+    search --fs-uuid --set=root 2507f76e-1f88-426d-a864-7e54802eadb4
+    linux /boot/vmlinuz-6.2.0-060200-generic root=UUID=2507f76e-1f88-426d-a864-7e54802eadb4 ro quiet nomodeset
+    initrd /boot/initrd.img-6.2.0-060200-generic
+}
+
+### Tsurugi ###
+menuentry "Tsurugi Linux 25.11" --class forensics {
+    search --fs-uuid --set=root 94a390b0-546d-4040-8f09-c317902881c9
+    linux /boot/vmlinuz-6.17.8-tsurugi root=UUID=94a390b0-546d-4040-8f09-c317902881c9 ro quiet nomodeset
+    initrd /boot/initrd.img-6.17.8-tsurugi
+}
+
+### EndeavourOS ###
+menuentry "EndeavourOS (Arch)" --class endeavouros {
+    search --fs-uuid --set=root 252ff7da-ae0b-4529-8e31-2230513d1e53
+    linux /boot/vmlinuz-linux root=UUID=252ff7da-ae0b-4529-8e31-2230513d1e53 rw quiet splash loglevel=3
+    initrd /boot/initramfs-linux.img
+}
+
